@@ -1,0 +1,18 @@
+<%- layout("/layouts/boilerplate")  %>
+<div class="row mt-3" >
+
+    <div class="alert alert-danger col-6 offset-3" role="alert">
+        <p class="alert-heading">
+            <%= err.message  %>
+        </p>
+
+    </div>
+
+    <!-- <img src="/images/404error.png" alt="image"> -->
+    <div class="image404">
+
+        <img class="error-img" alt="Match" src="<%= err.image %>">
+    </div>
+
+
+</div>

@@ -1,0 +1,66 @@
+sessions : It stores session data on the server side, using a variety of different storage options .
+--> and allows you to track the activity of a user across requests.
+--> eg : whenever user trying to add some items into cart without logging in , then an unique session "id" will be created for that browser (in that id all the items which has been added by user to the cart will be stored ) , it  will be sent to the client server and stored using cookies  , and even user tries to redirect to some other page , the data stored in the form of cookies will not be deleted  . 
+You can access the values present in the session id from any route... (like global variable)
+
+
+cookies : 
+
+--> cookies are used to track the sessions . it will store the data in the web browser in temporary storage . 
+
+locals : 
+--> The data that you wanted to send to the ejs file... you can store it in locals
+         by using this .. you dont need to send the message seperately to ejs file . 
+         we use middlewares for better experience..
+         whenver a call made to the route..then the middle ware will automatically called and tries to 
+         assign flash("success") to the successMsg if it is not empty .. 
+         we used req.flash("success") mostly above the redirect page .. redirect means .. going to another route...then middle ware will be called and assign the success msg if it was made by the present route
+         
+
+
+                        Storing passwords :  
+--> We never store the passwords as it is . We store their hashed form.
+
+--> we use hashing function to store passwords of the users during register time . 
+Process for register : 
+--> First the password will be passed to hashing function 
+--> And then we use the hash id or key ..and stores it in a database .
+-->When user logs in , he enters his username & password .
+--> Then we take the entered password and pass it to the same hashing function which was used while
+--> storing the password .
+--> If both are equal then the password is correct otherwise wrong .
+Flash messages : They are stored in req.flash() object .
+
+
+--> hackers may use brute force attaks to access passwords.. they pick commonly used passwords and finds the hashed form ..and checks if it was there in our data base 
+--> Or they use reverse lookup tables to get passwords from hashed form
+--> So inorder to avoid those attacks we use SALTING . 
+
+
+SALTING : 
+--> saltings is a technique to protect passwords stored in databases by adding a string of 32 or more characters and then hashing them.. 
+--> A salt is just another random string (like ?!@#$% etc..)added to the password before passing it to the hashing function
+
+
+Passport : 
+--> it is a library , mostly used for authentication 
+--> it provides an easy way to authenticate from other platforms like login with google or facebook etc...[ even we have seperate sign in form ]
+--> simply : it supports authentication using a username,password , google,fb,twitter etc..
+
+------> we use Passport plugin in the section where schema has defined
+
+----> passport automatically checks if user exists in database or not.. if not it wont even come inside the function , it will flash some message 
+
+NOTE : passport.authenticate() middleware invokes req.login() automatically . The function is primarly used when users sign up,during which req.login() can be invoked to automatically log in the newly registered user.
+
+NOTE : invoking logOut() will remove the req.user property and clear the login session (if any )
+
+
+Note : if user is trying to logging in after clicking newListing , then it is best to redirect him back to newListing page , rather than to home or listing page . 
+
+                            //  ******** Mention this in your resume : Used MVC framework and created a fullstack backend web application  ***********
+MVC : (Models,views,controllers) 
+In backend we use MVC for better functionality . 
+Models : To create models for Schemas .
+Views : To store the render ejs files ... 
+controllers : To make use of paths easier , we write all paths in it .  

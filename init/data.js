@@ -350,3 +350,16 @@ const sampleListings = [
 ];
 
 module.exports = { data: sampleListings };
+
+
+/*
+
+content : {
+  intro:
+  roadmap
+  faq
+  communityr
+  resourses
+
+}
+*/ 
